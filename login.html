@@ -6,24 +6,56 @@
     <title>ログイン画面</title>
 </head>
 <body>
+
     <h1>ログイン</h1>
 
-  <form>
-    <div>
-      <label for="userId">ユーザーID</label><br>
-      <input type="text" id="userId" name="userId">
-    </div>
+    <form id="loginForm">
+        <div>
+            <label for="userId">ユーザーID</label><br>
+            <input type="text" id="userId" name="userId">
+        </div>
 
-    <br>
+        <br>
 
-    <div>
-      <label for="password">パスワード</label><br>
-      <input type="password" id="password" name="password">
-    </div>
+        <div>
+            <label for="password">パスワード</label><br>
+            <input type="password" id="password" name="password">
+        </div>
 
-    <br>
+        <br>
 
-    <button type="button">ログイン</button>
-  </form>
+        <!-- エラーメッセージ表示 -->
+        <p id="errorMessage" style="color: red;"></p>
+
+        <button type="submit">ログイン</button>
+    </form>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const password = document.getElementById("password");
+        const errorMessage = document.getElementById("errorMessage");
+
+        loginForm.addEventListener("submit", function(event) {
+
+            // エラーメッセージ初期化
+            errorMessage.textContent = "";
+
+            // パスワード空欄禁止
+            if (password.value.trim() === "") {
+
+                // フォーム送信停止
+                event.preventDefault();
+
+                // 空欄時エラーメッセージ表示
+                errorMessage.textContent = "パスワードを入力してください。修正済み";
+
+                return;
+            }
+
+            // 正常時のみログイン処理
+            alert("ログイン成功");
+        });
+    </script>
+
 </body>
 </html>
